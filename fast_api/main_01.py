@@ -8,6 +8,7 @@ from memory import (
     add_user_message
 )
 import logging
+import time
 from fastapi.responses import StreamingResponse
 
 logging.basicConfig(
@@ -61,6 +62,23 @@ async def stream_chat(request : chat_request):
     }
 
    
+@app.middleware("http")
+async def loggin(
+    request , 
+    call_next
+):
+     
+    start_time = time.time()
+    logging.info("request received")
+
+    response  = await call_next(request)
+    
+    logging.info("response received")
+    end_time = time.time()
+
+    print("the total time required is :  " , end_time - start_time)
+
+    return response
 
 
 
