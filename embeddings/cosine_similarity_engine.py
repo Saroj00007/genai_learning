@@ -28,7 +28,7 @@ def cosine_similariyt(a , b):
     return ((dotproduct) / (magnitudeA * magnitudeB))
 
 
-x= [1,1]
+x= [-2,-2]
 y= [2,2]
 
 
